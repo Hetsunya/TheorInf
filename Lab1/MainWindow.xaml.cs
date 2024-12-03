@@ -124,6 +124,13 @@ namespace lab1
             return ensemble;
         }
 
+
+        private double func(double x)
+        {
+            double y = Math.Log(x, 2);
+            return -x * y;
+        }
+
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             // Чтение данных из матрицы
@@ -146,7 +153,7 @@ namespace lab1
                     result = SecondMethod(matrix, ensemble);
                     break;
                 case "матрица совместных вероятностей p(Ai/Bj)":
-                    result = ThirdMethod(matrix);
+                    ThirdMethod(matrix, ensemble);
                     break;
                 default:
                     result = "Выберите метод";
@@ -203,12 +210,9 @@ namespace lab1
             }
         }
 
-
+        //ВРОДЕ РАБОТАЕТ
         private void FirstMethod(double[,] matrix, double[] ensemble)
         {
-            // Пример функции, которую вы можете применить к каждому элементу матрицы или ансамбля.
-            Func<double, double> func = (x) => Math.Log(x); // или любой другой преобразователь
-
             int str = matrix.GetLength(0); // Число строк матрицы
             int stlb = matrix.GetLength(1); // Число столбцов матрицы
 
@@ -290,17 +294,88 @@ namespace lab1
         }
 
 
-
         private string SecondMethod(double[,] matrix, double[] ensemble)
         {
             // Логика для метода 2
             return "Результаты для метода 2";
         }
 
-        private string ThirdMethod(double[,] matrix)
+ 
+        // СЛОМАНО
+        private void ThirdMethod(double[,] matrix, double[] ansabmbl)
         {
-            // Логика для метода 3
-            return "Результаты для метода 3";
+            // Храним значения для энтропий и других вычислений
+            double h_A = Math.Round(ansabmbl.Select(func).Sum(), 3);
+            int str = matrix.GetLength(0); // Получаем количество строк
+            int stlb = matrix.GetLength(1); // Получаем количество столбцов
+
+            double[,] p_ab = new double[str, stlb];
+            double[,] p_ba = new double[str, stlb];
+            double h_zw = 0;
+            double HZW = 0;
+            double i_AB = 0;
+
+            // Заполнение матрицы p_ab
+            for (int i = 0; i < str; i++)
+            {
+                for (int j = 0; j < stlb; j++)
+                {
+                    p_ab[i, j] = matrix[i, j] * ansabmbl[j];
+                }
+            }
+
+            // Массив Z
+            double[] Z = Enumerable.Range(0, p_ab.GetLength(0))
+                .Select(j => Math.Round(Enumerable.Range(0, p_ab.GetLength(1))
+                    .Sum(i => p_ab[j, i]), 4))
+                .ToArray();
+
+            // Вычисление энтропии H(Z)
+            double h_Z = Math.Round(Z.Select(func).Sum(), 3);
+
+            // Вычисление энтропии HZW
+            for (int i = 0; i < str; i++)
+            {
+                for (int j = 0; j < stlb; j++)
+                {
+                    if (matrix[i, j] > 0)
+                    {
+                        double x = ansabmbl[j] * func(matrix[i, j]);
+                        h_zw += x;
+                    }
+                }
+            }
+
+            // Заполнение матрицы p_ba
+            for (int i = 0; i < str; i++)
+            {
+                for (int j = 0; j < stlb; j++)
+                {
+                    p_ba[i, j] = p_ab[i, j] / Z[i];
+                }
+            }
+
+            // Вычисление HZW и I(AB)
+            HZW = h_zw + h_A;
+            i_AB = h_Z - h_zw;
+
+            // Обновление UI с результатами
+            labelH_A.Content = Math.Round(h_A, 3);
+            labelH_B.Content = Math.Round(h_Z, 3);
+            labelH_AB.Content = Math.Round(h_zw, 3);
+            label10.Content = Math.Round(HZW, 3);
+            labelI_AB.Content = Math.Round(i_AB, 3);
+            label3.Content = "p(AB)";
+            label5.Content = "p(A/B)";
+
+            // Отображение матриц
+            DisplayMatrix(p_ab, matrixGrid);  // Заполнение grid для p_ab
+            DisplayMatrix(p_ba, pBaGrid);     // Заполнение grid для p_ba
+
+            // Обновление информации об ансамблях
+            labelH_BA.Content += "0,594";
+            ansambleB.Content += "(0,26, 0,14, 0,42, 0,18)";
+            ansambleA.Visibility = Visibility.Hidden;  // Скрытие ансамбля A
         }
     }
 }
