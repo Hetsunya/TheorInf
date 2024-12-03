@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\Lab1.csproj",
-      "projectName": "Lab1",
-      "projectPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\Lab1.csproj",
+      "projectUniqueName": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\lab1.csproj",
+      "projectName": "lab1",
+      "projectPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\lab1.csproj",
       "packagesPath": "C:\\Users\\Hetsu\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\obj\\",
+      "outputPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

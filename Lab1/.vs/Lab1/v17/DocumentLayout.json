@@ -1,17 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\",
+  "WorkspaceRootPath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{43361BF8-A170-4215-B820-69F8D2FC61FD}|Lab1.csproj|c:\\users\\hetsu\\desktop\\therinf\\lab1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{43361BF8-A170-4215-B820-69F8D2FC61FD}|Lab1.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+      "AbsoluteMoniker": "D:0:0:{F5B21808-F8EA-4DAE-A677-C2E467036876}|lab1.csproj|c:\\users\\hetsu\\desktop\\therinf\\lab1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F5B21808-F8EA-4DAE-A677-C2E467036876}|lab1.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{43361BF8-A170-4215-B820-69F8D2FC61FD}|Lab1.csproj|c:\\users\\hetsu\\desktop\\therinf\\lab1\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{43361BF8-A170-4215-B820-69F8D2FC61FD}|Lab1.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Hetsu\\AppData\\Local\\Temp\\.vsdbgsrc\\dee40dbe6e7e689285641b46b2f174c1ee141e17eea83ba4c5cfdf3237bd8cea\\ItemCollection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F5B21808-F8EA-4DAE-A677-C2E467036876}|lab1.csproj|c:\\users\\hetsu\\desktop\\therinf\\lab1\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F5B21808-F8EA-4DAE-A677-C2E467036876}|lab1.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     }
   ],
   "DocumentGroupContainers": [
@@ -25,40 +22,27 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ItemCollection.cs",
-              "DocumentMoniker": "C:\\Users\\Hetsu\\AppData\\Local\\Temp\\.vsdbgsrc\\dee40dbe6e7e689285641b46b2f174c1ee141e17eea83ba4c5cfdf3237bd8cea\\ItemCollection.cs",
-              "RelativeDocumentMoniker": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\dee40dbe6e7e689285641b46b2f174c1ee141e17eea83ba4c5cfdf3237bd8cea\\ItemCollection.cs",
-              "ToolTip": "C:\\Users\\Hetsu\\AppData\\Local\\Temp\\.vsdbgsrc\\dee40dbe6e7e689285641b46b2f174c1ee141e17eea83ba4c5cfdf3237bd8cea\\ItemCollection.cs [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
-              "RelativeToolTip": "..\\..\\..\\AppData\\Local\\Temp\\.vsdbgsrc\\dee40dbe6e7e689285641b46b2f174c1ee141e17eea83ba4c5cfdf3237bd8cea\\ItemCollection.cs [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]",
-              "ViewState": "AgIAAHoGAAAAAAAAAAAowIMGAAACAAAAAQAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-10T09:07:05.367Z",
-              "EditorCaption": " [\u0422\u043E\u043B\u044C\u043A\u043E \u0447\u0442\u0435\u043D\u0438\u0435]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\MainWindow.xaml",
               "RelativeDocumentMoniker": "MainWindow.xaml",
-              "ToolTip": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\MainWindow.xaml",
+              "ToolTip": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\MainWindow.xaml",
               "RelativeToolTip": "MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-11-10T08:52:56.452Z",
+              "WhenOpened": "2024-12-03T13:57:46.514Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "MainWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab1\\MainWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\Hetsu\\Desktop\\TherInf\\lab1\\MainWindow.xaml.cs",
               "RelativeToolTip": "MainWindow.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMBAAAAAAAAAAAqwMAAAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-10T08:52:51.491Z",
+              "WhenOpened": "2024-12-03T13:57:44.635Z",
               "EditorCaption": ""
             }
           ]

@@ -1,20 +1,20 @@
-﻿Lab1
+﻿lab1
 1.0.0.0
 
 winexe
 C#
 .cs
-C:\Users\Hetsu\Desktop\TherInf\Lab1\obj\Debug\net6.0-windows\
-Lab1
+C:\Users\Hetsu\Desktop\TherInf\lab1\obj\Debug\net6.0-windows\
+lab1
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-C:\Users\Hetsu\Desktop\TherInf\Lab1\App.xaml
+C:\Users\Hetsu\Desktop\TherInf\lab1\App.xaml
 11407045341
 
-61618175552
+61014185916
 194975967418
 MainWindow.xaml;
 
-False
+True
 

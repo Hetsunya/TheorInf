@@ -1,28 +1,77 @@
-﻿<Window x:Class="Lab1.MainWindow"
+﻿<Window x:Class="lab1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Информационные Метрики" Height="500" Width="800">
-    <Grid Margin="10">
-        <TextBlock Text="Выберите значения матрицы для расчетов" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10,0,20" />
-
-        <!-- ComboBox для выбора размера матрицы -->
-        <ComboBox Name="MatrixSizeComboBox" VerticalAlignment="Top" Margin="0,40,0,0" HorizontalAlignment="Center" Width="150" SelectionChanged="MatrixSizeComboBox_SelectionChanged">
-            <ComboBoxItem Content="2x2" />
-            <ComboBoxItem Content="3x3" />
-            <ComboBoxItem Content="4x4" />
+        Title="MainWindow" Height="500" Width="800">
+    <Grid>
+        <!-- Выбор метода -->
+        <ComboBox x:Name="methodComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="10,10,0,0" 
+                  SelectionChanged="MethodComboBox_SelectionChanged">
+            <!--1 метод-->
+            <ComboBoxItem Content="матрица условных вероятностей p(Ai/Bj) и ансамбль Б"/>
+            <!--2 метод-->
+            <ComboBoxItem Content="матрица условных вероятностей p(Bi/Aj) и ансамбль А"/>
+            <!--3 метод-->
+            <ComboBoxItem Content="матрица совместных вероятностей p(Ai/Bj)"/>
         </ComboBox>
 
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="159,105,0,0">
-            <!-- DataGrid для ввода значений матрицы -->
-            <DataGrid Name="MatrixDataGrid" AutoGenerateColumns="True" HeadersVisibility="Column" CanUserAddRows="True" CanUserDeleteRows="True" GridLinesVisibility="All" Height="157" />
+        <!-- Ввод количества строк и столбцов для матрицы -->
+        <Label Content="Количество строк" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0"/>
+        <TextBox x:Name="rowCountTextBox" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,50,0,0"/>
+
+        <Label Content="Количество столбцов" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0"/>
+        <TextBox x:Name="colCountTextBox" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,90,0,0" />
+
+        <!-- Кнопка для создания матрицы -->
+        <Button Content="Создать матрицу" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="280,5,0,0" Click="CreateMatrixButton_Click"/>
+
+        <!-- Кнопка для рассчета -->
+        <Button Content="Рассчитать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="280,55,0,0" Click="CalculateButton_Click"/>
+
+        <!-- Область для отображения матрицы -->
+        <Grid x:Name="matrixGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0" Width="Auto">
         </Grid>
 
-        <!-- Кнопка для расчета всех метрик -->
-        <Button Content="Рассчитать все метрики" Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,50" Click="CalculateAllMetrics_Click"/>
-
-        <Grid HorizontalAlignment="Right" VerticalAlignment="Top" Margin="20,80,10,100">
-            <!-- Блок для вывода всех результатов -->
-            <TextBlock Name="ResultsTextBlock" Text="Результаты расчетов будут отображены здесь" FontSize="14" FontWeight="Bold" TextWrapping="Wrap" />
+        <!-- Область для ансамбля -->
+        <Grid x:Name="ensembleGrid" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,450,0,0" Width="Auto">
         </Grid>
+
+        <!-- Результаты -->
+        <Grid x:Name="resultsGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="620,10,50,10" Width="Auto" Height="Auto">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label x:Name="labelH_A" Content="H(A):" Grid.Row="0" Margin="5"/>
+            <Label x:Name="labelH_B" Content="H(B):" Grid.Row="1" Margin="5"/>
+            <Label x:Name="labelH_AB" Content="H(AB):" Grid.Row="2" Margin="5"/>
+            <Label x:Name="label10" Content="HZW:" Grid.Row="3" Margin="5"/>
+            <Label x:Name="labelI_AB" Content="I(AB):" Grid.Row="4" Margin="5"/>
+            <Label x:Name="label3" Content="p(AB):" Grid.Row="5" Margin="5"/>
+            <Label x:Name="label5" Content="p(b/a):" Grid.Row="6" Margin="5"/>
+
+            <!-- Дополнительные метки и другие элементы для матриц -->
+            <Label x:Name="labelH_BA" Content="H(B/A):" Grid.Row="7" Margin="5"/>
+            <Label x:Name="ansambleA" Content="Ansamble A:" Grid.Row="8" Margin="5"/>
+            <Label x:Name="ansambleB" Content="Ansamble B:" Grid.Row="9" Margin="5"/>
+        </Grid>
+
+        <!-- Grid для отображения матрицы p_ab -->
+        <Grid x:Name="pAbGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,162,307,0" Width="Auto"/>
+        
+        <!-- Grid для отображения матрицы p_ba -->
+        <Grid x:Name="pBaGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,302,307,0" Width="Auto"/>
+        
     </Grid>
 </Window>
