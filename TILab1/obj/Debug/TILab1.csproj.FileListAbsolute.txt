@@ -90,3 +90,13 @@ C:\Users\Hetsu\Desktop\Theory_Information\TILab1\obj\Debug\TILab1.csproj.Generat
 C:\Users\Hetsu\Desktop\Theory_Information\TILab1\obj\Debug\TILab1.csproj.CoreCompileInputs.cache
 C:\Users\Hetsu\Desktop\Theory_Information\TILab1\obj\Debug\TILab1.exe
 C:\Users\Hetsu\Desktop\Theory_Information\TILab1\obj\Debug\TILab1.pdb
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\bin\Debug\TILab1.exe.config
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\bin\Debug\TILab1.exe
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\bin\Debug\TILab1.pdb
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.csproj.AssemblyReference.cache
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.Form1.resources
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.Properties.Resources.resources
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.csproj.GenerateResource.cache
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.csproj.CoreCompileInputs.cache
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.exe
+C:\Users\Hetsu\Desktop\TheorInf\TILab1\obj\Debug\TILab1.pdb

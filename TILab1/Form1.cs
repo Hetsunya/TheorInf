@@ -26,6 +26,39 @@ namespace TILab1
 
         private void button1_Click(object sender, EventArgs e)
         {
+            try
+            {
+                ClearCreatedObjects();
+                createdObjects = new List<Control>();
+                str = ParseInput(textBox1, "Поле 1 должно быть заполнено числом!");
+                stlb = ParseInput(textBox2, "Поле 2 должно быть заполнено числом!");
+
+                //основная матрица вероятностей
+                GenerateTextBoxes(str, stlb, 20, 150);
+
+                //ансамбли если они нужны
+                if (comboBox1.SelectedIndex == 0)
+                {
+                    GenerateTextBoxes(1, stlb, 20, 20 + 250);
+                    label4.Text = "A";
+                }
+                else if (comboBox1.SelectedIndex == 1)
+                {
+                    GenerateTextBoxes(1, str, 20, 20 + 250);
+                    label4.Text = "B";
+                }
+
+                button2.Show();
+                createMatrix.Text = "Пересоздать";
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ClearCreatedObjects()
+        {
             if (createdObjects != null)
             {
                 foreach (var obj in createdObjects)
@@ -35,58 +68,33 @@ namespace TILab1
                 }
                 createdObjects.Clear();
             }
-
-            createdObjects = new List<Control>();
-            str = int.TryParse(textBox1.Text, out int tempStr)
-                ? tempStr
-                : (MessageBox.Show("Поле 1 должно быть заполнено числом!"), 0).Item2;
-
-            stlb = int.TryParse(textBox2.Text, out int tempStlb)
-                ? tempStlb
-                : (MessageBox.Show("Поле 2 должно быть заполнено числом!"), 0).Item2;
-
-
-            for (int x = 1; x < str + 1; x++)
-            {
-                for (int y = 6; y < stlb + 6; y++)
-                {
-                    TextBox TB = new TextBox();
-                    TB.Size = new Size(30, 30);
-                    TB.Location = new Point(x * 30, y * 20);
-                    this.Controls.Add(TB);
-                    createdObjects.Add(TB);
-
-                }
-            }
-
-            if (comboBox1.SelectedIndex.Equals(0))
-            {
-                for (int x = 1; x < stlb + 1; x++)
-                {
-                    TextBox TB = new TextBox();
-                    TB.Size = new Size(30, 30);
-                    TB.Location = new Point(x * 30, (stlb + 6) * 20 + 20);
-                    this.Controls.Add(TB);
-                    createdObjects.Add(TB);
-                }
-                label4.Text = "A";
-            }
-
-            if (comboBox1.SelectedIndex.Equals(1))
-            {
-                for (int x = 1; x < str + 1; x++)
-                {
-                    TextBox TB = new TextBox();
-                    TB.Size = new Size(30, 30);
-                    TB.Location = new Point(x * 30, (stlb + 6) * 20 + 20);
-                    this.Controls.Add(TB);
-                    createdObjects.Add(TB);
-                }
-                label4.Text = "B";
-            }
-            button2.Show();
-            button1.Text = "Пересоздать";
         }
+
+        private int ParseInput(TextBox textBox, string errorMessage)
+        {
+            return int.TryParse(textBox.Text, out int value)
+                ? value
+                : throw new ArgumentException(errorMessage);
+        }
+
+        private void GenerateTextBoxes(int rows, int cols, int offsetX, int offsetY)
+        {
+            for (int x = 0; x < rows; x++)
+            {
+                for (int y = 0; y < cols; y++)
+                {
+                    TextBox tb = new TextBox
+                    {
+                        Size = new Size(30, 30), // Увеличиваем размер для большей видимости
+                        Location = new Point(offsetX + y * 30, offsetY + x * 20), // Увеличиваем шаг
+                        TextAlign = HorizontalAlignment.Center
+                    };
+                    Controls.Add(tb);
+                    createdObjects.Add(tb);
+                }
+            }
+        }
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -350,6 +358,11 @@ namespace TILab1
             ansambleB.Hide();
         }
 
+        private void ansambleB_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void thirdMethod(double[,] matrix, double[] ansabmbl)
         {
             double h_A = Math.Round(ansabmbl.Select(func).Sum(), 3);
@@ -395,7 +408,7 @@ namespace TILab1
             labelH_AB.Text += Math.Round(h_zw, 3);
             label10.Text += Math.Round(HZW, 3);
             labelI_AB.Text += Math.Round(i_AB, 3);
-            label3.Text = "p(AB)";
+            label3.Text = "p(AB)";  
             label5.Text = "p(A/B)";
             DisplayMatrix(p_ab);
             DisplayMatrix2(p_ba);
