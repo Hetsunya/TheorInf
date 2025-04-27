@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:lab1"
         mc:Ignorable="d"
-        Title="Решение задач по теории информации" Height="600" Width="900">
+        Title="Решение задач по теории информации" Height="900" Width="1200">
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
     </Window.Resources>
@@ -27,6 +27,12 @@
                     <ComboBoxItem Content="2"/>
                     <ComboBoxItem Content="3"/>
                     <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
                 </ComboBox>
                 <TextBlock Text="Столбцы (W): " VerticalAlignment="Center" Margin="10,0,0,0"/>
                 <ComboBox x:Name="ColsComboBox" Width="50" SelectedIndex="3" Margin="5">
@@ -34,76 +40,155 @@
                     <ComboBoxItem Content="2"/>
                     <ComboBoxItem Content="3"/>
                     <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5"/>
+                    <ComboBoxItem Content="6"/>
+                    <ComboBoxItem Content="7"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                    <ComboBoxItem Content="10"/>
                 </ComboBox>
-                <Button x:Name="UpdateMatrixButton" Content="Обновить матрицу" Margin="10,0" Click="UpdateMatrixButton_Click"/>
-            </StackPanel>
-        </GroupBox>
-
-        <!-- Тип задачи -->
-        <GroupBox Grid.Row="1" Header="Тип задачи" Margin="5">
-            <StackPanel Orientation="Horizontal" Margin="5">
-                <TextBlock Text="Выберите тип задачи: " VerticalAlignment="Center"/>
-                <ComboBox x:Name="TaskTypeComboBox" Width="200" SelectedIndex="0" Margin="5" SelectionChanged="TaskTypeComboBox_SelectionChanged">
-                    <ComboBoxItem Content="Дана p(Zi, Wj)"/>
-                    <ComboBoxItem Content="Дана p(Wj | Zi) и p(Zi)"/>
-                    <ComboBoxItem Content="Дана p(Zi | Wj) и p(Wj)"/>
-                </ComboBox>
+                <Button x:Name="UpdateMatrixButton" Content="Обновить матрицы" Margin="10,0" Click="UpdateMatrixButton_Click"/>
             </StackPanel>
         </GroupBox>
 
         <!-- Ввод данных -->
-        <GroupBox Grid.Row="2" Header="Ввод данных" Margin="5">
-            <StackPanel>
-                <!-- Матрица -->
-                <TextBlock Text="Матрица вероятностей:" Margin="0,0,0,5"/>
-                <ItemsControl x:Name="MatrixInput">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Vertical"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <ItemsControl ItemsSource="{Binding}">
-                                    <ItemsControl.ItemsPanel>
-                                        <ItemsPanelTemplate>
-                                            <StackPanel Orientation="Horizontal"/>
-                                        </ItemsPanelTemplate>
-                                    </ItemsControl.ItemsPanel>
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+        <GroupBox Grid.Row="1" Header="Ввод данных" Margin="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                <!-- Ансамбль -->
-                <TextBlock x:Name="EnsembleLabel" Text="Ансамбль p(Wj):" Margin="0,10,0,5" Visibility="{Binding IsEnsembleVisible, Converter={StaticResource BoolToVisConverter}}"/>
-                <ItemsControl x:Name="EnsembleInput" Visibility="{Binding IsEnsembleVisible, Converter={StaticResource BoolToVisConverter}}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
-            </StackPanel>
+                <!-- p(Zi, Wj) -->
+                <GroupBox Grid.Column="0" Header="p(Zi, Wj)" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="Матрица p(Zi, Wj):" Margin="0,0,0,5"/>
+                        <ItemsControl x:Name="MatrixJointInput">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ItemsControl ItemsSource="{Binding}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- p(Wj | Zi) -->
+                <GroupBox Grid.Column="1" Header="p(Wj | Zi)" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="Матрица p(Wj | Zi):" Margin="0,0,0,5"/>
+                        <ItemsControl x:Name="MatrixCondWgivenZInput">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ItemsControl ItemsSource="{Binding}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="Ансамбль p(Zi):" Margin="0,10,0,5"/>
+                        <ItemsControl x:Name="EnsembleZInput">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </GroupBox>
+
+                <!-- p(Zi | Wj) -->
+                <GroupBox Grid.Column="2" Header="p(Zi | Wj)" Margin="5">
+                    <StackPanel>
+                        <TextBlock Text="Матрица p(Zi | Wj):" Margin="0,0,0,5"/>
+                        <ItemsControl x:Name="MatrixCondZgivenWInput">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Vertical"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <ItemsControl ItemsSource="{Binding}">
+                                            <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                    <StackPanel Orientation="Horizontal"/>
+                                                </ItemsPanelTemplate>
+                                            </ItemsControl.ItemsPanel>
+                                            <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                    <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                                </DataTemplate>
+                                            </ItemsControl.ItemTemplate>
+                                        </ItemsControl>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <TextBlock Text="Ансамбль p(Wj):" Margin="0,10,0,5"/>
+                        <ItemsControl x:Name="EnsembleWInput">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </GroupBox>
+            </Grid>
         </GroupBox>
 
         <!-- Кнопка для расчёта -->
-        <Button x:Name="CalculateButton" Grid.Row="3" Content="Рассчитать" Width="100" Height="30" Margin="5" Click="CalculateButton_Click"/>
+        <Button x:Name="CalculateButton" Grid.Row="2" Content="Рассчитать" Width="100" Height="30" Margin="5" Click="CalculateButton_Click"/>
 
         <!-- Вывод результатов -->
-        <GroupBox Grid.Row="4" Header="Результаты" Margin="5">
+        <GroupBox Grid.Row="3" Header="Результаты" Margin="5">
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <TextBlock x:Name="ResultsTextBlock" TextWrapping="Wrap"/>
             </ScrollViewer>

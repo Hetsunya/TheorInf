@@ -11,38 +11,26 @@ namespace lab1
 {
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        private ObservableCollection<ObservableCollection<MatrixCell>> matrixData;
-        private ObservableCollection<MatrixCell> ensembleData;
-        private bool isEnsembleVisible;
+        private ObservableCollection<ObservableCollection<MatrixCell>> matrixJointData;
+        private ObservableCollection<ObservableCollection<MatrixCell>> matrixCondWgivenZData;
+        private ObservableCollection<ObservableCollection<MatrixCell>> matrixCondZgivenWData;
+        private ObservableCollection<MatrixCell> ensembleZData;
+        private ObservableCollection<MatrixCell> ensembleWData;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
-        public bool IsEnsembleVisible
-        {
-            get => isEnsembleVisible;
-            set
-            {
-                isEnsembleVisible = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsEnsembleVisible)));
-            }
-        }
 
         public MainWindow()
         {
             InitializeComponent();
             DataContext = this;
-            InitializeMatrixInputs(2, 4); // Инициализация матрицы
+            InitializeMatrixInputs(2, 4); // Инициализация матриц
             SetDefaultValues(); // Устанавливаем значения из задачи №9 для p(Zi, Wj)
-            UpdateEnsembleVisibility();
-            UpdateEnsembleLabel();
         }
 
         private void InitializeMatrixInputs(int rows, int cols)
         {
-            matrixData = new ObservableCollection<ObservableCollection<MatrixCell>>();
-            ensembleData = new ObservableCollection<MatrixCell>();
-
-            // Создаём матрицу
+            // Инициализация p(Zi, Wj)
+            matrixJointData = new ObservableCollection<ObservableCollection<MatrixCell>>();
             for (int i = 0; i < rows; i++)
             {
                 var row = new ObservableCollection<MatrixCell>();
@@ -50,16 +38,51 @@ namespace lab1
                 {
                     row.Add(new MatrixCell { Value = "0" });
                 }
-                matrixData.Add(row);
+                matrixJointData.Add(row);
             }
-            MatrixInput.ItemsSource = matrixData;
+            MatrixJointInput.ItemsSource = matrixJointData;
 
-            // Создаём ансамбль
+            // Инициализация p(Wj | Zi)
+            matrixCondWgivenZData = new ObservableCollection<ObservableCollection<MatrixCell>>();
+            for (int i = 0; i < rows; i++)
+            {
+                var row = new ObservableCollection<MatrixCell>();
+                for (int j = 0; j < cols; j++)
+                {
+                    row.Add(new MatrixCell { Value = "0" });
+                }
+                matrixCondWgivenZData.Add(row);
+            }
+            MatrixCondWgivenZInput.ItemsSource = matrixCondWgivenZData;
+
+            // Инициализация p(Zi | Wj)
+            matrixCondZgivenWData = new ObservableCollection<ObservableCollection<MatrixCell>>();
+            for (int i = 0; i < rows; i++)
+            {
+                var row = new ObservableCollection<MatrixCell>();
+                for (int j = 0; j < cols; j++)
+                {
+                    row.Add(new MatrixCell { Value = "0" });
+                }
+                matrixCondZgivenWData.Add(row);
+            }
+            MatrixCondZgivenWInput.ItemsSource = matrixCondZgivenWData;
+
+            // Инициализация ансамбля p(Zi)
+            ensembleZData = new ObservableCollection<MatrixCell>();
+            for (int i = 0; i < rows; i++)
+            {
+                ensembleZData.Add(new MatrixCell { Value = "0" });
+            }
+            EnsembleZInput.ItemsSource = ensembleZData;
+
+            // Инициализация ансамбля p(Wj)
+            ensembleWData = new ObservableCollection<MatrixCell>();
             for (int j = 0; j < cols; j++)
             {
-                ensembleData.Add(new MatrixCell { Value = "0" });
+                ensembleWData.Add(new MatrixCell { Value = "0" });
             }
-            EnsembleInput.ItemsSource = ensembleData;
+            EnsembleWInput.ItemsSource = ensembleWData;
         }
 
         private void SetDefaultValues()
@@ -70,19 +93,19 @@ namespace lab1
                 { 0.32, 0.10, 0.16, 0.02 },
                 { 0.08, 0.20, 0.04, 0.08 }
             };
-            var defaultEnsemble = new double[] { 0.40, 0.30, 0.20, 0.10 };
+            var defaultEnsembleW = new double[] { 0.40, 0.30, 0.20, 0.10 };
 
-            for (int i = 0; i < matrixData.Count; i++)
+            for (int i = 0; i < matrixJointData.Count; i++)
             {
-                for (int j = 0; j < matrixData[i].Count; j++)
+                for (int j = 0; j < matrixJointData[i].Count; j++)
                 {
-                    matrixData[i][j].Value = defaultMatrix[i, j].ToString("0.00");
+                    matrixJointData[i][j].Value = defaultMatrix[i, j].ToString("0.00");
                 }
             }
 
-            for (int j = 0; j < ensembleData.Count; j++)
+            for (int j = 0; j < ensembleWData.Count; j++)
             {
-                ensembleData[j].Value = defaultEnsemble[j].ToString("0.00");
+                ensembleWData[j].Value = defaultEnsembleW[j].ToString("0.00");
             }
         }
 
@@ -91,43 +114,102 @@ namespace lab1
             int rows = int.Parse((RowsComboBox.SelectedItem as ComboBoxItem).Content.ToString());
             int cols = int.Parse((ColsComboBox.SelectedItem as ComboBoxItem).Content.ToString());
             InitializeMatrixInputs(rows, cols);
-            UpdateEnsembleVisibility();
-            UpdateEnsembleLabel();
         }
 
         private void CalculateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                int taskType = TaskTypeComboBox.SelectedIndex; // 0: p(Zi,Wj), 1: p(Wj|Zi), 2: p(Zi|Wj)
-                int rows = matrixData.Count;
-                int cols = matrixData[0].Count;
+                int rows = matrixJointData.Count;
+                int cols = matrixJointData[0].Count;
 
-                // Парсим матрицу
-                double[,] matrix = new double[rows, cols];
+                // Парсим все матрицы
+                double[,] matrixJoint = new double[rows, cols];
+                double[,] matrixCondWgivenZ = new double[rows, cols];
+                double[,] matrixCondZgivenW = new double[rows, cols];
+                double[] ensembleZ = new double[rows];
+                double[] ensembleW = new double[cols];
+
+                bool isJointFilled = false;
+                bool isCondWgivenZFilled = false;
+                bool isCondZgivenWFilled = false;
+
+                // p(Zi, Wj)
                 for (int i = 0; i < rows; i++)
                 {
                     for (int j = 0; j < cols; j++)
                     {
-                        matrix[i, j] = double.Parse(matrixData[i][j].Value);
+                        matrixJoint[i, j] = double.Parse(matrixJointData[i][j].Value);
+                        if (matrixJoint[i, j] != 0) isJointFilled = true;
                     }
                 }
 
-                // Парсим ансамбль (если он виден)
-                double[] ensemble = new double[taskType == 1 ? rows : cols];
-                if (taskType != 0) // Ансамбль нужен только для типов 1 и 2
+                // p(Wj | Zi)
+                for (int i = 0; i < rows; i++)
                 {
-                    for (int j = 0; j < ensemble.Length; j++)
+                    for (int j = 0; j < cols; j++)
                     {
-                        ensemble[j] = double.Parse(ensembleData[j].Value);
+                        matrixCondWgivenZ[i, j] = double.Parse(matrixCondWgivenZData[i][j].Value);
+                        if (matrixCondWgivenZ[i, j] != 0) isCondWgivenZFilled = true;
                     }
+                }
+
+                // p(Zi | Wj)
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        matrixCondZgivenW[i, j] = double.Parse(matrixCondZgivenWData[i][j].Value);
+                        if (matrixCondZgivenW[i, j] != 0) isCondZgivenWFilled = true;
+                    }
+                }
+
+                // Ансамбль p(Zi)
+                for (int i = 0; i < rows; i++)
+                {
+                    ensembleZ[i] = double.Parse(ensembleZData[i].Value);
+                }
+
+                // Ансамбль p(Wj)
+                for (int j = 0; j < cols; j++)
+                {
+                    ensembleW[j] = double.Parse(ensembleWData[j].Value);
+                }
+
+                // Проверка, что хотя бы одна матрица заполнена
+                if (!isJointFilled && !isCondWgivenZFilled && !isCondZgivenWFilled)
+                {
+                    throw new Exception("Хотя бы одна матрица должна быть заполнена (содержать ненулевые значения).");
+                }
+
+                // Определяем тип задачи на основе заполненной матрицы
+                int taskType = -1;
+                double[,] inputMatrix = null;
+                double[] inputEnsemble = null;
+
+                if (isJointFilled)
+                {
+                    taskType = 0;
+                    inputMatrix = matrixJoint;
+                }
+                else if (isCondWgivenZFilled)
+                {
+                    taskType = 1;
+                    inputMatrix = matrixCondWgivenZ;
+                    inputEnsemble = ensembleZ;
+                }
+                else if (isCondZgivenWFilled)
+                {
+                    taskType = 2;
+                    inputMatrix = matrixCondZgivenW;
+                    inputEnsemble = ensembleW;
                 }
 
                 // Проверяем корректность введённых данных
-                ValidateInput(matrix, ensemble, taskType, rows, cols);
+                ValidateInput(inputMatrix, inputEnsemble, taskType, rows, cols);
 
                 // Решаем задачу
-                var result = SolveTask(matrix, ensemble, taskType, rows, cols);
+                var result = SolveTask(inputMatrix, inputEnsemble, taskType, rows, cols);
                 ResultsTextBlock.Text = result;
             }
             catch (Exception ex)
@@ -387,30 +469,6 @@ namespace lab1
             result.AppendLine($"I(Z;W) = {I_ZW.ToString("0.00")}");
 
             return result.ToString();
-        }
-
-        private void UpdateEnsembleLabel()
-        {
-            if (EnsembleLabel == null || TaskTypeComboBox == null)
-                return;
-
-            int taskType = TaskTypeComboBox.SelectedIndex;
-            EnsembleLabel.Text = taskType == 1 ? "Ансамбль p(Zi):" : "Ансамбль p(Wj):";
-        }
-
-        private void UpdateEnsembleVisibility()
-        {
-            if (TaskTypeComboBox == null)
-                return;
-
-            int taskType = TaskTypeComboBox.SelectedIndex;
-            IsEnsembleVisible = taskType != 0;
-        }
-
-        private void TaskTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            UpdateEnsembleLabel();
-            UpdateEnsembleVisibility();
         }
     }
 
