@@ -1,0 +1,14 @@
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.csproj.AssemblyReference.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\MainWindow.baml
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\MainWindow.g.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\App.g.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3_MarkupCompile.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.g.resources
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.Properties.Resources.resources
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.csproj.GenerateResource.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.csproj.CoreCompileInputs.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\bin\Debug\lab3.exe.config
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\bin\Debug\lab3.exe
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\bin\Debug\lab3.pdb
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.exe
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\lab3\obj\Debug\lab3.pdb

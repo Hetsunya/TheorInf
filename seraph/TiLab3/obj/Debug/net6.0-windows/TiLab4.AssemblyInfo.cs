@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("TiLab4")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b24ede1dc2f980b53be3a485973df8a82cd859cb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7479dd90b2f46d172ac976e19d3847bdfab19b39")]
 [assembly: System.Reflection.AssemblyProductAttribute("TiLab4")]
 [assembly: System.Reflection.AssemblyTitleAttribute("TiLab4")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

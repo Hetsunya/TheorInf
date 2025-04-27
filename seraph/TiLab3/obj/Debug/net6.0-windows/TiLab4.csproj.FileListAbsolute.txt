@@ -63,3 +63,20 @@ C:\Users\Hetsu\Desktop\Theory_Information\TiLab3\obj\Debug\net6.0-windows\refint
 C:\Users\Hetsu\Desktop\Theory_Information\TiLab3\obj\Debug\net6.0-windows\TiLab4.pdb
 C:\Users\Hetsu\Desktop\Theory_Information\TiLab3\obj\Debug\net6.0-windows\TiLab4.genruntimeconfig.cache
 C:\Users\Hetsu\Desktop\Theory_Information\TiLab3\obj\Debug\net6.0-windows\ref\TiLab4.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\bin\Debug\net6.0-windows\TiLab4.exe
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\bin\Debug\net6.0-windows\TiLab4.deps.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\bin\Debug\net6.0-windows\TiLab4.runtimeconfig.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\bin\Debug\net6.0-windows\TiLab4.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\bin\Debug\net6.0-windows\TiLab4.pdb
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\Hamming.Form1.resources
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.csproj.GenerateResource.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.AssemblyInfoInputs.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.AssemblyInfo.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.csproj.CoreCompileInputs.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.sourcelink.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\refint\TiLab4.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.pdb
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\TiLab4.genruntimeconfig.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\seraph\TiLab3\obj\Debug\net6.0-windows\ref\TiLab4.dll
