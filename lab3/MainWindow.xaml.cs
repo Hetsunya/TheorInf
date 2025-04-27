@@ -185,7 +185,7 @@ namespace HammingCodeWPF
 
                     ResultLabel.Content = $"Ошибка в бите {ERROR_VAL + 1}. Исправленная строка:";
                     DisplayBitsWithColor(new BitArray(correctedString.Length), true, correctedString);
-                    LogMessage($"Обнаружена и исправлена ошибка в бите {ERROR_VAL + 1}.", Brushes.Orange);
+                    LogMessage($"Обнаружена и исправлена ошибка в бите {ERROR_VAL + 1}.", new SolidColorBrush(Color.FromRgb(255, 165, 0))); // Мягкий оранжевый
                 }
             }
             catch (ArgumentException ex)
@@ -241,8 +241,11 @@ namespace HammingCodeWPF
 
         private void LogMessage(string message, Brush color)
         {
-            LogTextBox.AppendText($"{DateTime.Now:HH:mm:ss}: {message}\n");
-            LogTextBox.Foreground = color;
+            Run logRun = new Run($"{DateTime.Now:HH:mm:ss}: {message}\n") { Foreground = color };
+            Paragraph paragraph = new Paragraph(logRun);
+            FlowDocument document = LogTextBox.Document ?? new FlowDocument();
+            document.Blocks.Add(paragraph);
+            LogTextBox.Document = document;
             LogTextBox.ScrollToEnd();
         }
 

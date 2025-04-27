@@ -41,8 +41,8 @@
 
         <!-- Лог ошибок -->
         <GroupBox Grid.Row="3" Header="Лог" Padding="10">
-            <TextBox x:Name="LogTextBox" IsReadOnly="True" FontFamily="Consolas" FontSize="14" 
-                     VerticalScrollBarVisibility="Auto" TextWrapping="Wrap"/>
+            <RichTextBox x:Name="LogTextBox" IsReadOnly="True" FontFamily="Consolas" FontSize="14" 
+                         VerticalScrollBarVisibility="Auto" Height="Auto"/>
         </GroupBox>
 
         <!-- Статус -->
