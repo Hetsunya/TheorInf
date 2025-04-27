@@ -1,77 +1,112 @@
 ﻿<Window x:Class="lab1.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="500" Width="800">
-    <Grid>
-        <!-- Выбор метода -->
-        <ComboBox x:Name="methodComboBox" VerticalAlignment="Top" HorizontalAlignment="Left" Width="200" Margin="10,10,0,0" 
-                  SelectionChanged="MethodComboBox_SelectionChanged">
-            <!--1 метод-->
-            <ComboBoxItem Content="матрица условных вероятностей p(Ai/Bj) и ансамбль Б"/>
-            <!--2 метод-->
-            <ComboBoxItem Content="матрица условных вероятностей p(Bi/Aj) и ансамбль А"/>
-            <!--3 метод-->
-            <ComboBoxItem Content="матрица совместных вероятностей p(Ai/Bj)"/>
-        </ComboBox>
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:lab1"
+        mc:Ignorable="d"
+        Title="Решение задач по теории информации" Height="600" Width="900">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
 
-        <!-- Ввод количества строк и столбцов для матрицы -->
-        <Label Content="Количество строк" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0"/>
-        <TextBox x:Name="rowCountTextBox" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,50,0,0"/>
+        <!-- Размер матрицы -->
+        <GroupBox Grid.Row="0" Header="Размер матрицы" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Строки (Z): " VerticalAlignment="Center"/>
+                <ComboBox x:Name="RowsComboBox" Width="50" SelectedIndex="1" Margin="5">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                </ComboBox>
+                <TextBlock Text="Столбцы (W): " VerticalAlignment="Center" Margin="10,0,0,0"/>
+                <ComboBox x:Name="ColsComboBox" Width="50" SelectedIndex="3" Margin="5">
+                    <ComboBoxItem Content="1"/>
+                    <ComboBoxItem Content="2"/>
+                    <ComboBoxItem Content="3"/>
+                    <ComboBoxItem Content="4"/>
+                </ComboBox>
+                <Button x:Name="UpdateMatrixButton" Content="Обновить матрицу" Margin="10,0" Click="UpdateMatrixButton_Click"/>
+            </StackPanel>
+        </GroupBox>
 
-        <Label Content="Количество столбцов" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,90,0,0"/>
-        <TextBox x:Name="colCountTextBox" Width="100" Height="25" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,90,0,0" />
+        <!-- Тип задачи -->
+        <GroupBox Grid.Row="1" Header="Тип задачи" Margin="5">
+            <StackPanel Orientation="Horizontal" Margin="5">
+                <TextBlock Text="Выберите тип задачи: " VerticalAlignment="Center"/>
+                <ComboBox x:Name="TaskTypeComboBox" Width="200" SelectedIndex="0" Margin="5" SelectionChanged="TaskTypeComboBox_SelectionChanged">
+                    <ComboBoxItem Content="Дана p(Zi, Wj)"/>
+                    <ComboBoxItem Content="Дана p(Wj | Zi) и p(Zi)"/>
+                    <ComboBoxItem Content="Дана p(Zi | Wj) и p(Wj)"/>
+                </ComboBox>
+            </StackPanel>
+        </GroupBox>
 
-        <!-- Кнопка для создания матрицы -->
-        <Button Content="Создать матрицу" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="280,5,0,0" Click="CreateMatrixButton_Click"/>
+        <!-- Ввод данных -->
+        <GroupBox Grid.Row="2" Header="Ввод данных" Margin="5">
+            <StackPanel>
+                <!-- Матрица -->
+                <TextBlock Text="Матрица вероятностей:" Margin="0,0,0,5"/>
+                <ItemsControl x:Name="MatrixInput">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <StackPanel Orientation="Horizontal"/>
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
 
-        <!-- Кнопка для рассчета -->
-        <Button Content="Рассчитать" HorizontalAlignment="Left" VerticalAlignment="Top" Width="Auto" Height="Auto" Margin="280,55,0,0" Click="CalculateButton_Click"/>
+                <!-- Ансамбль -->
+                <TextBlock x:Name="EnsembleLabel" Text="Ансамбль p(Wj):" Margin="0,10,0,5" Visibility="{Binding IsEnsembleVisible, Converter={StaticResource BoolToVisConverter}}"/>
+                <ItemsControl x:Name="EnsembleInput" Visibility="{Binding IsEnsembleVisible, Converter={StaticResource BoolToVisConverter}}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <TextBox Width="60" Margin="2" Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+        </GroupBox>
 
-        <!-- Область для отображения матрицы -->
-        <Grid x:Name="matrixGrid" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,200,0,0" Width="Auto">
-        </Grid>
+        <!-- Кнопка для расчёта -->
+        <Button x:Name="CalculateButton" Grid.Row="3" Content="Рассчитать" Width="100" Height="30" Margin="5" Click="CalculateButton_Click"/>
 
-        <!-- Область для ансамбля -->
-        <Grid x:Name="ensembleGrid" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="10,450,0,0" Width="Auto">
-        </Grid>
-
-        <!-- Результаты -->
-        <Grid x:Name="resultsGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="620,10,50,10" Width="Auto" Height="Auto">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-
-            <Label x:Name="labelH_A" Content="H(A):" Grid.Row="0" Margin="5"/>
-            <Label x:Name="labelH_B" Content="H(B):" Grid.Row="1" Margin="5"/>
-            <Label x:Name="labelH_AB" Content="H(AB):" Grid.Row="2" Margin="5"/>
-            <Label x:Name="label10" Content="HZW:" Grid.Row="3" Margin="5"/>
-            <Label x:Name="labelI_AB" Content="I(AB):" Grid.Row="4" Margin="5"/>
-            <Label x:Name="label3" Content="p(AB):" Grid.Row="5" Margin="5"/>
-            <Label x:Name="label5" Content="p(b/a):" Grid.Row="6" Margin="5"/>
-
-            <!-- Дополнительные метки и другие элементы для матриц -->
-            <Label x:Name="labelH_BA" Content="H(B/A):" Grid.Row="7" Margin="5"/>
-            <Label x:Name="ansambleA" Content="Ansamble A:" Grid.Row="8" Margin="5"/>
-            <Label x:Name="ansambleB" Content="Ansamble B:" Grid.Row="9" Margin="5"/>
-        </Grid>
-
-        <!-- Grid для отображения матрицы p_ab -->
-        <Grid x:Name="pAbGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,162,307,0" Width="Auto"/>
-        
-        <!-- Grid для отображения матрицы p_ba -->
-        <Grid x:Name="pBaGrid" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,302,307,0" Width="Auto"/>
-        
+        <!-- Вывод результатов -->
+        <GroupBox Grid.Row="4" Header="Результаты" Margin="5">
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <TextBlock x:Name="ResultsTextBlock" TextWrapping="Wrap"/>
+            </ScrollViewer>
+        </GroupBox>
     </Grid>
 </Window>

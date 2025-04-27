@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "+L/Go7CbKG8=",
+  "dgSpecHash": "J66JyUtEQXU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Hetsu\\Desktop\\TherInf\\Lab2\\Lab2.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\vital\\OneDrive\\Рабочий стол\\TheorInf\\Lab2\\Lab2.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\vital\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.36\\microsoft.windowsdesktop.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\vital\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.36\\microsoft.netcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\vital\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.36\\microsoft.aspnetcore.app.ref.6.0.36.nupkg.sha512",
+    "C:\\Users\\vital\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.36\\microsoft.netcore.app.host.win-x64.6.0.36.nupkg.sha512"
+  ],
   "logs": []
 }

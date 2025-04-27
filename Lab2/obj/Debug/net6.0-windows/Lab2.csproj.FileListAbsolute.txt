@@ -17,3 +17,23 @@ C:\Users\Hetsu\Desktop\TherInf\Lab2\obj\Debug\net6.0-windows\refint\Lab2.dll
 C:\Users\Hetsu\Desktop\TherInf\Lab2\obj\Debug\net6.0-windows\Lab2.pdb
 C:\Users\Hetsu\Desktop\TherInf\Lab2\obj\Debug\net6.0-windows\Lab2.genruntimeconfig.cache
 C:\Users\Hetsu\Desktop\TherInf\Lab2\obj\Debug\net6.0-windows\ref\Lab2.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\bin\Debug\net6.0-windows\Lab2.exe
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\bin\Debug\net6.0-windows\Lab2.deps.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\bin\Debug\net6.0-windows\Lab2.runtimeconfig.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\bin\Debug\net6.0-windows\Lab2.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\bin\Debug\net6.0-windows\Lab2.pdb
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\MainWindow.baml
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\MainWindow.g.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\App.g.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2_MarkupCompile.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.g.resources
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.AssemblyInfoInputs.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.AssemblyInfo.cs
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.csproj.CoreCompileInputs.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.sourcelink.json
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\refint\Lab2.dll
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.pdb
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\Lab2.genruntimeconfig.cache
+C:\Users\vital\OneDrive\Рабочий стол\TheorInf\Lab2\obj\Debug\net6.0-windows\ref\Lab2.dll
